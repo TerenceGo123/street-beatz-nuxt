@@ -1,23 +1,24 @@
 <template>
   <div>
-    <nav>
-      <ul class="flex justify-around items-center bg-black text-white py-2 text-2xl nav-menu " >
-        <li><a href="">О НАС</a></li>
-        <li><a href="">МЕРОПРИЯТИЯ</a></li>
-        <li><a href=""><img src="/favicon.png" alt="street beatz logo" class="max-sm:w-1/2 mx-auto"></a></li>
-        <li><a href="">ПОЧЕМУ МЫ?</a></li>
-        <li><a href="">КОМАНДА</a></li>
+    <nav class="max-sm:bg-black w-full">
+      <button class="hamburger sm:hidden relative left-2 z-50 text-white text-5xl" @click="toggleMenu">☰</button>
+      <ul class="nav-ul flex justify-around items-center bg-black text-white py-2 text-2xl nav-menu max-sm:flex-col max-sm:items-start max-sm:pl-2 max-sm:text-xl max-sm:hidden" >
+        <li><a href="#about">О НАС</a></li>
+        <li><a href="#events">МЕРОПРИЯТИЯ</a></li>
+        <li class="max-sm:order-first"><img src="/favicon.png" alt="street beatz logo" class=" mx-auto max-sm:hidden"></li>
+        <li><a href="#why we">ПОЧЕМУ МЫ?</a></li>
+        <li><a href="#team">КОМАНДА</a></li>
       </ul>
-    </nav>
-    <header class="top-0 left-0 w-full h-screen max-sm:h-[90vh] bg-[image:linear-gradient(to_top,rgba(0,0,0,1.0),transparent_100%),url('/main-image.jpg')] bg-cover  bg-top">
-        <div class="flex flex-col justify-end items-center h-full pb-28">
+    </nav> 
+    <header class="w-full h-screen max-sm:h-[80vh] bg-[image:linear-gradient(to_top,rgba(0,0,0,1.0),transparent_100%),url('/main-image.jpg')] bg-cover  bg-top">
+        <div class="flex flex-col justify-end items-center h-full pb-28 max-sm:p-12">
           <h1 class=" text-white text-8xl max-lg:text-5xl max-sm:text-4xl play-bold text-center mb-6" >ШОУ<br>БАРАБАНЩИКОВ</h1>
-          <MyButton>ОСТАВИТЬ ЗАЯВКУ</MyButton>
+          <a href="#form"><MyButton>ОСТАВИТЬ ЗАЯВКУ</MyButton></a>
         </div>
     </header>
     <main class=" bg-black px-14 max-sm:px-4" >
       <div class="container mx-auto ">
-        <section class="about-section h-max">
+        <section class="about-section h-max" id="about">
             <MyTitle>О НАС</MyTitle>
             <div class=" flex justify-between max-xl:flex-col max-xl:items-center max-xl:justify-between  max-sm:flex-col max-sm:items-center " >
                 <div class="w-1/3 max-xl:w-2/4 max-sm:w-full max-sm:mb-5">
@@ -53,13 +54,13 @@
                 </div>
             </div>  
           </section>
-          <section class="event-section">
+          <section class="event-section" id="events">
             <MyTitle>МЕРОПРИЯТИЯ</MyTitle>
             <div class="list-card grid grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-8 row-auto">
               <MyCard v-for="item in cards" :key="item.id" :item="item"/>
             </div>
           </section>
-          <section class="why-we-section">
+          <section class="why-we-section" id="why we">
             <MyTitle>ПОЧЕМУ МЫ?</MyTitle>
             <div>
               <div class="flex justify-between items-center">
@@ -73,7 +74,7 @@
             </div>
           
           </section>
-          <section class="team-section mb-12">
+          <section class="team-section mb-12" id="team">
             <MyTitle>КОМАНДА</MyTitle> 
             <div class="grid grid-cols-4 max-sm:grid-cols-2 gap-y-12"> 
               <div class=" bg-brand-orange rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto"></div>
@@ -118,6 +119,7 @@
   </div>  
 </template>
 <script lang="ts" setup>
+
 const cards = [
   {
     id: 1,
@@ -142,6 +144,28 @@ const cards = [
 ] 
 
 
+let IsVisible: Boolean = false 
+
+const toggleMenu = () => {
+    const menu = document.querySelector('.nav-ul');
+    const hamburger = document.querySelector('.hamburger')
+    if(menu != null && hamburger != null) {
+      menu.classList.toggle('max-sm:hidden')
+      if(hamburger.textContent == "☰") { 
+        console.log("check open")
+        hamburger.textContent = "𐄂"
+        return
+      }
+
+      else if (hamburger.textContent == "𐄂") {
+        console.log("check close")
+        hamburger.textContent = "☰"
+        return
+      } 
+    }
+  }
+
+
 </script>
 
 <style>
@@ -163,7 +187,7 @@ const cards = [
 }
 
 .nav-menu li :not(img) {
-  @apply  hover:border-b-4  hover:border-brand-orange  transition-all box-border max-sm:text-xs
+  @apply  hover:border-b-4  hover:border-brand-orange  transition-all box-border 
 }
 
 .list__item {
