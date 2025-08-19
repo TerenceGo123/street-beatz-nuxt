@@ -1,8 +1,16 @@
 <template>
   <div>
-    <nav class="max-sm:bg-black w-full">
-      <button class="hamburger sm:hidden relative left-2 z-50 text-white text-5xl" @click="toggleMenu">☰</button>
-      <ul class="nav-ul flex justify-around items-center bg-black text-white py-2 text-2xl nav-menu max-sm:flex-col max-sm:items-start max-sm:pl-2 max-sm:text-xl max-sm:hidden" >
+    <nav class="max-sm:bg-black w-full relative">
+      <button class="relative group sm:hidden" onclick="this.classList.toggle('active')" @click="toggleMenu">
+        <div class="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all duration-200 shadow-md">
+          <div class="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden">
+            <div class="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-[.active]:rotate-[42deg]"></div>
+            <div class="bg-white h-[2px] w-1/2 rounded transform transition-all duration-300 group-[.active]:-translate-x-10"></div>
+            <div class="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-[.active]:-rotate-[42deg]"></div>
+          </div>  
+        </div>
+      </button>
+      <ul class="nav-ul flex justify-around items-center bg-black text-white py-2 text-2xl nav-menu max-sm:flex-col max-sm:items-start max-sm:pl-2 max-sm:text-xl max-sm:opacity-0 max-sm:w-full max-sm:absolute top-[50px] transform transition-all duration-300" >
         <li><a href="#about">О НАС</a></li>
         <li><a href="#events">МЕРОПРИЯТИЯ</a></li>
         <li class="max-sm:order-first"><img src="/favicon.png" alt="street beatz logo" class=" mx-auto max-sm:hidden"></li>
@@ -16,39 +24,38 @@
           <a href="#form"><MyButton>ОСТАВИТЬ ЗАЯВКУ</MyButton></a>
         </div>
     </header>
-    <main class=" bg-black px-14 max-sm:px-4" >
-      <div class="container mx-auto ">
+    <main class=" bg-black px-14 max-lg:px-8 max-sm:px-4" >
+      <div class="container mx-auto">
         <section class="about-section h-max" id="about">
             <MyTitle>О НАС</MyTitle>
-            <div class=" flex justify-between max-xl:flex-col max-xl:items-center max-xl:justify-between  max-sm:flex-col max-sm:items-center " >
-                <div class="w-1/3 max-xl:w-2/4 max-sm:w-full max-sm:mb-5">
-                    <NuxtImg class=" w-3/4 text-center mb-16 sm:m-auto max-sm:mb-2 max-sm:w-1/4 max-sm:m-auto" src="/logo.png" alt="Логотип Шоу Барабанщиков Street Beatz"/>
-                    <h4 class=" text-brand-orange text-2xl text-center max-sm:text-xl max-sm:text-left max-sm:w-full " >Шоу Барабанщиков Street Beatz</h4><br>
-                    <p class="text-2xl text-center max-sm:text-xl max-sm:text-left text-white max-sm:w-full" >Наше шоу барабанщиков – это уникальное сочетание динамичных перформансов, невероятной музыкальной энергии и визуального искусства.</p>
-
+            <div class=" flex justify-between  max-sm:flex-col max-sm:items-center " >
+                <div class="w-1/3 text-center max-xl:w-2/4 max-lg:text-start max-sm:w-full max-sm:mb-5 ">
+                    <NuxtImg class=" w-3/4 mb-16 max-lg:w-1/4  max-lg:mb-4 lg:m-auto max-sm:mb-2 max-sm:m-auto" src="/logo.png" alt="Логотип Шоу Барабанщиков Street Beatz"/>
+                    <h4 class=" text-brand-orange text-2xl max-lg:text-xl max-sm:text-left max-sm:w-full " >Шоу Барабанщиков Street Beatz</h4><br>
+                    <p class="text-2xl max-lg:text-xl max-sm:text-left text-white max-sm:w-full" >Наше шоу барабанщиков – это уникальное сочетание динамичных перформансов, невероятной музыкальной энергии и визуального искусства.</p>
                 </div> 
                 <div class="w-1/2 max-sm:w-full">
                   <div class="relative pb-[80%] max-sm:pb-0"> <!-- Подберите нужный процент под вашу композицию -->
                     <!-- Фото 1 -->
                     <NuxtImg 
                       src="/photo1.jpg" 
-                      class="w-[40%] absolute top-[0%]  left-[25%] rounded-lg max-sm:w-4/5 max-sm:hidden"
+                      class="w-[40%] absolute top-[0%]  left-[25%] rounded-lg max-lg:left-[45%] max-sm:w-4/5 max-sm:hidden"
                     /> 
                     <!-- Фото 2 -->
                     <NuxtImg 
                       src="/photo2.jpg" 
-                      class="w-[50%] absolute top-[47%] -left-[5%] rounded-lg max-sm:static max-sm:m-auto max-sm:w-full max-sm:mb-2"
+                      class="w-[50%] absolute top-[47%] -left-[5%] rounded-lg max-lg:left-[8%] max-sm:static max-sm:m-auto max-sm:w-full max-sm:mb-2"
                     />
                     
                     <!-- Фото 3 -->
                     <NuxtImg 
                       src="/photo3.jpeg" 
-                      class="w-[50%] absolute top-[52%] left-[50%] rounded-lg max-sm:static max-sm:m-auto max-sm:w-full max-sm:mb-2"
+                      class="w-[50%] absolute top-[52%] left-[50%] rounded-lg max-lg:left-[63%] max-sm:static max-sm:m-auto max-sm:w-full max-sm:mb-2"
                     />
 
                     <NuxtImg 
                       src="/photo4.jpg" 
-                      class="w-[50%] absolute top-[52%] left-[50%] rounded-lg max-sm:static max-sm:m-auto max-sm:w-full"
+                      class="w-[50%] absolute top-[52%] left-[50%] rounded-lg sm:hidden max-sm:static max-sm:m-auto max-sm:w-full"
                     />
                   </div>
                 </div>
@@ -56,7 +63,7 @@
           </section>
           <section class="event-section" id="events">
             <MyTitle>МЕРОПРИЯТИЯ</MyTitle>
-            <div class="list-card grid grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-8 row-auto">
+            <div class="list-card grid grid-cols-4 max-lg:grid-cols-2 gap-8 row-auto">
               <MyCard v-for="item in cards" :key="item.id" :item="item"/>
             </div>
           </section>
@@ -64,12 +71,12 @@
             <MyTitle>ПОЧЕМУ МЫ?</MyTitle>
             <div>
               <div class="flex justify-between items-center">
-                <ul class="text-white text-2xl list-disc list-inside w-1/2 max-sm:w-full ">
+                <ul class="text-white text-2xl max-xl:text-xl list-disc list-inside w-1/2 max-lg:w-full ">
                   <li class="list__item">Самый <span class="text-brand-orange">зажигательный коллектив</span> Краснодарского края! </li>
                   <li class="list__item">Мы сделаем Ваше мероприятие шумным, <span class="text-brand-orange">ярким и фееричным!</span></li>
                   <li class="list__item"><span class="text-brand-orange">Проффесиональный</span> подход к делу!</li>
                 </ul>
-                <img src="/assets/images/t-short.png" alt="" class=" 2xl:w-2/4 xl:w-2/5 max-sm:hidden">  
+                <img src="/assets/images/t-short.png" alt="" class=" 2xl:w-2/4 xl:w-2/5 max-lg:hidden">  
               </div>
             </div>
           
@@ -89,7 +96,7 @@
           </section>
           <section class="form-section pt-12 mb-5" id="form">
             <div class="flex justify-between items-center">
-              <div class="w-2/4 flex justify-center flex-col max-sm:w-full">
+              <div class="w-2/4 flex justify-center flex-col max-lg:w-full">
                 <div class="flex justify-center">
                   <img src="/favicon.png" alt="street beatz logo">
                 </div>
@@ -102,17 +109,24 @@
                   <MyButton>ОСТАВИТЬ ЗАЯВКУ</MyButton>
                 </form>
               </div>
-              <div class="w-2/5 max-sm:hidden">
+              <div class="w-2/5 max-lg:hidden">
                 <img src="/assets/images/peopleImage.jpg" alt="" class=" rounded-3xl">
               </div>
             </div>
           </section>
-          <footer class="h-56">
-            <hr>
-            <ul class="text-white">
-              <li><a href="tel:+79604837407">89604837407</a></li>
-              <li><a href="">mail@mail.com</a></li>
-            </ul>
+          <footer class="h-56 flex justify-center max-sm:justify-around items-center">
+            <img src="/favicon.png" alt="street beatz logo" class="sm:mr-14" >
+            <div class="contacts flex flex-col items-center">
+              <ul class="text-white text-xl contacts__list mb-2">
+                <li>КОНТАКТЫ</li>
+                <li><a href="tel:+79604837407">8 960 483 74 07</a></li>
+                <li><a href="">mail@mail.com</a></li>
+              </ul>
+              <div class="contacts__socials flex justify-start w-full">
+                <a href="https://vk.com/streetbeatz_drumshow"><img src="../assets/icons/VkIco.svg" alt="vk street beatz" class=" w-8 h-8 mr-2"></a>
+                <a href="https://wa.me/79054954125"><img src="../assets/icons/whatsAppIco.svg" alt="whatsapp street beatz" class=" w-8 h-8"></a>
+              </div>
+            </div>
           </footer>
       </div>
     </main>
@@ -144,26 +158,13 @@ const cards = [
 ] 
 
 
-let IsVisible: Boolean = false 
-
 const toggleMenu = () => {
-    const menu = document.querySelector('.nav-ul');
-    const hamburger = document.querySelector('.hamburger')
-    if(menu != null && hamburger != null) {
-      menu.classList.toggle('max-sm:hidden')
-      if(hamburger.textContent == "☰") { 
-        console.log("check open")
-        hamburger.textContent = "𐄂"
-        return
-      }
-
-      else if (hamburger.textContent == "𐄂") {
-        console.log("check close")
-        hamburger.textContent = "☰"
-        return
-      } 
-    }
+  const menu = document.querySelector(".nav-ul")
+  if(menu != null) {
+    menu.classList.toggle('max-sm:opacity-100')
   }
+}
+
 
 
 </script>
@@ -187,21 +188,23 @@ const toggleMenu = () => {
 }
 
 .nav-menu li :not(img) {
-  @apply  hover:border-b-4  hover:border-brand-orange  transition-all box-border 
+  @apply  hover:border-b-4  hover:border-brand-orange transform transition-all box-border 
 }
 
 .list__item {
-  @apply leading-[4rem] max-xl:text-xl max-sm:mb-8
+  @apply leading-[4rem] leading-8 max-sm:mb-4
 }
 
 .input-form {
-  @apply w-full p-4 rounded-xl text-xl border-black border-2 outline focus:border-brand-orange mb-8
+  @apply w-full p-4 rounded-xl text-xl border-black border-2 outline focus:border-brand-orange mb-8 max-sm:mb-4
 }
 
 .label-form {
  @apply text-white ml-2
 }
  
-
+.contacts__list li {
+  @apply mb-2
+}
 
 </style>
