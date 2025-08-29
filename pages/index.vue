@@ -83,15 +83,9 @@
           </section>
           <section class="team-section mb-12" id="team">
             <MyTitle>КОМАНДА</MyTitle> 
-            <div class="grid grid-cols-4 max-sm:grid-cols-2 gap-y-12"> 
-              <div class=" bg-brand-orange rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto"></div>
-              <div class=" bg-brand-orange rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto"></div>
-              <div class=" bg-brand-orange rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto"></div>
-              <div class=" bg-brand-orange rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto"></div>
-              <div class=" bg-brand-orange rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto"></div>
-              <div class=" bg-brand-orange rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto"></div>
-              <div class=" bg-brand-orange rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto"></div>
-              <div class=" bg-brand-orange rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto"></div>
+            <TeamMember :name="teamLeader.name" :img="teamLeader.img" class="mb-12" />
+            <div class="grid grid-cols-3 max-sm:grid-cols-2 gap-y-12 place-content-center"> 
+              <TeamMember v-for="mebmer in teamNames" :name="mebmer.name" :img="mebmer.img" />
             </div>
           </section>
           <section class="form-section pt-12 mb-5" id="form">
@@ -102,10 +96,12 @@
                 </div>
                 <MyTitle>ОСТАВИТЬ ЗАЯВКУ</MyTitle>
                 <form action="">
-                  <label for="name" class="label-form">Имя</label>
-                  <input type="text" name="name" placeholder="Введите имя..." class="input-form">
-                  <label for="telephone" class="label-form">Телефон</label>
-                  <input type="tel" name="telephone" placeholder="Введите телефон..." class="input-form">
+                  <MyFormInputWithLabel :name="'name'" :label="'Имя'" :placeholder="'Введите имя...'" :type="'text'" />
+                  <MyFormInputWithLabel :name="'telephone'" :label="'Телефон'" :placeholder="'Введите телефон...'" :type="'tel'" />
+                  <div class="flex justify-between max-sm:block">
+                    <MyFormInputWithLabel :name="'date'" :label="'Дата'" :placeholder="'Введите телефон...'" :type="'date'" class="w-2/5 max-sm:w-full"/>
+                    <MyFormInputWithLabel :name="'city'" :label="'Город'" :placeholder="'Введите город...'" :type="'text'"  class="w-2/5 max-sm:w-full"/>
+                  </div>
                   <MyButton>ОСТАВИТЬ ЗАЯВКУ</MyButton>
                 </form>
               </div>
@@ -133,6 +129,19 @@
   </div>  
 </template>
 <script lang="ts" setup>
+import MyFormInputWithLabel from '~/components/MyFormInputWithLabel.vue'
+
+
+const teamLeader = {name: "Семён", img: '/team/Semen.jpg'} 
+const teamNames = [  
+  { name: "Лера", img: "/main-image.jpg" },
+  { name: "Женя", img: "/team/Evgeniy.jpg" },
+  { name: "Саня", img: "/team/Sanya.jpg" },
+  { name: "Лиза", img: "/main-image.jpg" },
+  { name: "Даша", img: "/main-image.jpg" },
+  { name: "Лера", img: "/main-image.jpg" }
+] 
+
 
 const cards = [
   {
@@ -195,16 +204,22 @@ const toggleMenu = () => {
   @apply leading-[4rem] leading-8 max-sm:mb-4
 }
 
-.input-form {
-  @apply w-full p-4 rounded-xl text-xl border-black border-2 outline focus:border-brand-orange mb-8 max-sm:mb-4
-}
 
-.label-form {
- @apply text-white ml-2
-}
  
 .contacts__list li {
   @apply mb-2
 }
 
+
+.team-member {
+  @apply relative overflow-hidden bg-[url('/main-image.jpg')] bg-cover bg-center rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto text-white
+}
+
+.black-bg-transparent {
+  @apply opacity-0 group-hover:opacity-100 absolute inset-0 bg-gradient-to-t from-black/100 to-transparent transition-all
+}
+
+.team-name {
+  @apply opacity-0 group-hover:opacity-100 text-3xl relative z-10 bottom-5 flex justify-center items-end h-full text-white transition-all
+}
 </style>
