@@ -95,15 +95,31 @@
                   <img src="/favicon.png" alt="street beatz logo">
                 </div>
                 <MyTitle>ОСТАВИТЬ ЗАЯВКУ</MyTitle>
-                <form action="">
-                  <MyFormInputWithLabel :name="'name'" :label="'Имя'" :placeholder="'Введите имя...'" :type="'text'" />
-                  <MyFormInputWithLabel :name="'telephone'" :label="'Телефон'" :placeholder="'Введите телефон...'" :type="'tel'" />
+                <form v-if="!formStore.formIsSubmit" action="" @submit.prevent="formStore.submitForm">
+                  <MyFormInputWithLabel :name="'name'" :label="'Имя'" :placeholder="'Введите имя...'" :type="'text'" v-model="formStore.formInfo.name"/>
+                  <MyFormInputWithLabel :name="'telephone'" :label="'Телефон'" :placeholder="'Введите телефон...'" :type="'tel'" v-model="formStore.formInfo.number"/>
                   <div class="flex justify-between max-sm:block">
-                    <MyFormInputWithLabel :name="'date'" :label="'Дата'" :placeholder="'Введите телефон...'" :type="'date'" class="w-2/5 max-sm:w-full"/>
-                    <MyFormInputWithLabel :name="'city'" :label="'Город'" :placeholder="'Введите город...'" :type="'text'"  class="w-2/5 max-sm:w-full"/>
+                    <MyFormInputWithLabel :name="'date'" :label="'Дата'" :placeholder="'Введите телефон...'" :type="'date'" class="w-2/5 max-sm:w-full" v-model="formStore.formInfo.date"/>
+                    <MyFormInputWithLabel :name="'city'" :label="'Город'" :placeholder="'Введите город...'" :type="'text'"  class="w-2/5 max-sm:w-full" v-model="formStore.formInfo.city"/>
                   </div>
-                  <MyButton>ОСТАВИТЬ ЗАЯВКУ</MyButton>
+                  <MyFormInputWithLabel :name="'comment'" :label="'Комментарий *'" :placeholder="'Введите комментарий (необязательно)'" :type="'text'" v-model="formStore.formInfo.comment"/>
+                  <MyButton>ОСТАВИТЬ ЗАЯВКУ</MyButton>  
                 </form>
+                <div v-if="formStore.formIsSubmit" class="flex flex-col items-center justify-center p-8 text-center h-[534.8px]">
+                  <div class="w-32 h-32 mb-8 relative">
+                    <div class="circle w-full h-full rounded-full bg-brand-yellow  opacity-0 scale-0 shadow-lg shadow-brand-orange"></div>
+                    <svg class="checkmark absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                      <path d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                  </div>
+                  <p class="success-text text-white text-2xl mb-6 opacity-0 translate-y-5">Заявка успешно отправлена!</p>
+                  <MyButton 
+                    @click="formStore.resetForm"
+                    class="success-text opacity-0 translate-y-5"
+                  >
+                    Отправить ещё
+                  </MyButton>
+              </div>
               </div>
               <div class="w-2/5 max-lg:hidden">
                 <img src="/assets/images/peopleImage.jpg" alt="" class=" rounded-3xl">
@@ -130,7 +146,10 @@
 </template>
 <script lang="ts" setup>
 import MyFormInputWithLabel from '~/components/MyFormInputWithLabel.vue'
+import { useFormStore } from '~/stores/userStore'
 
+const formStore = useFormStore()
+const name = ref("")
 
 const teamLeader = {name: "Семён", img: '/team/Semen.jpg'} 
 const teamNames = [  
@@ -221,5 +240,62 @@ const toggleMenu = () => {
 
 .team-name {
   @apply opacity-0 group-hover:opacity-100 text-3xl relative z-10 bottom-5 flex justify-center items-end h-full text-white transition-all
+}
+
+.circle {
+  animation: circle-anim 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation-delay: 0.3s;
+}
+
+.checkmark path {
+  stroke: #fff;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: checkmark-anim 0.8s ease-in-out forwards;
+  animation-delay: 1s;
+}
+
+.success-text {
+  animation: text-anim 0.5s ease forwards;
+  animation-delay: 1.8s;
+}
+
+
+@keyframes circle-anim {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes checkmark-anim {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes text-anim {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

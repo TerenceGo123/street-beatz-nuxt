@@ -1,7 +1,7 @@
 <template>
     <div>
         <label :for="name" class="label-form">{{ label }}</label>
-        <input :type="type" :name="name" :placeholder="placeholder" class="input-form">
+        <input :type="type" :name="name" :placeholder="placeholder" class="input-form" :value="modelValue" @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)">
     </div>
 </template>
 
@@ -11,8 +11,11 @@ interface InputProps {
   placeholder: string;
   name: string;
   label: string;
+  modelValue: string
 }
 
+
+defineEmits(['update:modelValue'])
 defineProps<InputProps>();
 </script>
 
