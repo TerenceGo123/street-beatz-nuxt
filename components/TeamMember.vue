@@ -1,6 +1,7 @@
 <template>
-    <div class="leader">
-        <div class="team-member group" :style="{ backgroundImage: `url(${img})` }">
+    <div>
+        <!-- <div class="team-member group" :style="{ backgroundImage: `url(${img})` }"> -->
+        <div class="team-member group">
             <div class="black-bg-transparent"></div>
             <div class="team-name">
                 {{ name }}
@@ -24,7 +25,7 @@ defineProps({
 
 <style scoped>
 .team-member {
-  @apply relative overflow-hidden bg-cover bg-center rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto text-white
+  @apply relative overflow-hidden bg-brand-orange bg-cover bg-center rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 max-sm:h-32 max-sm:w-32 mx-auto text-white
 }
 
 .black-bg-transparent {

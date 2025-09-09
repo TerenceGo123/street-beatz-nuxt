@@ -3,6 +3,7 @@ import {ref} from 'vue'
 
 export const useFormStore = defineStore('form', () => {
 
+    const loader = ref(false)
     const formIsSubmit = ref(false)
     const formInfo = ref({
         access_key: "61559fd2-3e2e-4b3b-aef3-0c2cfd3267d8",
@@ -20,8 +21,13 @@ export const useFormStore = defineStore('form', () => {
 
     const submitForm = async () => {
     result.value = "Please wait...";
-    console.log('SUCCESS');
-    formIsSubmit.value = true
+    loader.value = true
+    setTimeout(() => {
+        console.log('SUCCESS');
+        loader.value = false
+        formIsSubmit.value = true        
+    }, 2000)
+
     
     // try {
     //     const response: any = await $fetch('https://api.web3forms.com/submit', {
@@ -72,7 +78,7 @@ export const useFormStore = defineStore('form', () => {
     }
 
     return {
-        formInfo, formIsSubmit, submitForm, resetForm
+        formInfo, formIsSubmit, loader, submitForm, resetForm
     }
 
 

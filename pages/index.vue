@@ -21,7 +21,7 @@
     <header class="w-full h-screen max-sm:h-[80vh] bg-[image:linear-gradient(to_top,rgba(0,0,0,1.0),transparent_100%),url('/main-image.jpg')] bg-cover  bg-top">
         <div class="flex flex-col justify-end items-center h-full pb-28 max-sm:p-12">
           <h1 class=" text-white text-8xl max-lg:text-5xl max-sm:text-4xl play-bold text-center mb-6" >ШОУ<br>БАРАБАНЩИКОВ</h1>
-          <a href="#form"><MyButton>ОСТАВИТЬ ЗАЯВКУ</MyButton></a>
+          <a href="#form"><MyButton :type="'button'">ОСТАВИТЬ ЗАЯВКУ</MyButton></a>
         </div>
     </header>
     <main class=" bg-black px-14 max-lg:px-8 max-sm:px-4" >
@@ -79,7 +79,6 @@
                 <img src="/assets/images/t-short.png" alt="" class=" 2xl:w-2/4 xl:w-2/5 max-lg:hidden">  
               </div>
             </div>
-          
           </section>
           <section class="team-section mb-12" id="team">
             <MyTitle>КОМАНДА</MyTitle> 
@@ -94,17 +93,7 @@
                 <div class="flex justify-center">
                   <img src="/favicon.png" alt="street beatz logo">
                 </div>
-                <MyTitle>ОСТАВИТЬ ЗАЯВКУ</MyTitle>
-                <form v-if="!formStore.formIsSubmit" action="" @submit.prevent="formStore.submitForm">
-                  <MyFormInputWithLabel :name="'name'" :label="'Имя'" :placeholder="'Введите имя...'" :type="'text'" v-model="formStore.formInfo.name"/>
-                  <MyFormInputWithLabel :name="'telephone'" :label="'Телефон'" :placeholder="'Введите телефон...'" :type="'tel'" v-model="formStore.formInfo.number"/>
-                  <div class="flex justify-between max-sm:block">
-                    <MyFormInputWithLabel :name="'date'" :label="'Дата'" :placeholder="'Введите телефон...'" :type="'date'" class="w-2/5 max-sm:w-full" v-model="formStore.formInfo.date"/>
-                    <MyFormInputWithLabel :name="'city'" :label="'Город'" :placeholder="'Введите город...'" :type="'text'"  class="w-2/5 max-sm:w-full" v-model="formStore.formInfo.city"/>
-                  </div>
-                  <MyFormInputWithLabel :name="'comment'" :label="'Комментарий *'" :placeholder="'Введите комментарий (необязательно)'" :type="'text'" v-model="formStore.formInfo.comment"/>
-                  <MyButton>ОСТАВИТЬ ЗАЯВКУ</MyButton>  
-                </form>
+                <MyForm v-if="!formStore.formIsSubmit"/>
                 <div v-if="formStore.formIsSubmit" class="flex flex-col items-center justify-center p-8 text-center h-[534.8px]">
                   <div class="w-32 h-32 mb-8 relative">
                     <div class="circle w-full h-full rounded-full bg-brand-yellow  opacity-0 scale-0 shadow-lg shadow-brand-orange"></div>
@@ -116,6 +105,7 @@
                   <MyButton 
                     @click="formStore.resetForm"
                     class="success-text opacity-0 translate-y-5"
+                    :type="'button'"
                   >
                     Отправить ещё
                   </MyButton>
@@ -145,11 +135,9 @@
   </div>  
 </template>
 <script lang="ts" setup>
-import MyFormInputWithLabel from '~/components/MyFormInputWithLabel.vue'
-import { useFormStore } from '~/stores/userStore'
+import { useFormStore } from '~/stores/formStore'
 
 const formStore = useFormStore()
-const name = ref("")
 
 const teamLeader = {name: "Семён", img: '/team/Semen.jpg'} 
 const teamNames = [  
@@ -206,7 +194,7 @@ const toggleMenu = () => {
 * {
   font-family: "Play", sans-serif;
   font-weight: 400;
-  font-style: normal;
+  font-style: normal; 
 }
  
 .play-bold {
@@ -230,17 +218,6 @@ const toggleMenu = () => {
 }
 
 
-.team-member {
-  @apply relative overflow-hidden bg-[url('/main-image.jpg')] bg-cover bg-center rounded-full 2xl:w-44 2xl:h-44  xl:w-36 xl:h-36  max-xl:w-36 max-xl:h-36 mx-auto text-white
-}
-
-.black-bg-transparent {
-  @apply opacity-0 group-hover:opacity-100 absolute inset-0 bg-gradient-to-t from-black/100 to-transparent transition-all
-}
-
-.team-name {
-  @apply opacity-0 group-hover:opacity-100 text-3xl relative z-10 bottom-5 flex justify-center items-end h-full text-white transition-all
-}
 
 .circle {
   animation: circle-anim 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
