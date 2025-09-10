@@ -98,11 +98,11 @@ const  validateDate = (value: string) => {
 <style scoped>
 
 .error-message {
-  @apply ml-2 text-xl text-red-600 max-sm:text-xs
+  @apply ml-2 text-sm text-red-600 max-sm:text-xs
 }
 
 .input-form {
-  @apply w-full p-4 rounded-xl text-xl border-black border-2 outline focus:border-brand-orange mb-1 
+  @apply w-full p-4 rounded-xl text-xl  border-black border-2 outline focus:border-brand-orange mb-1 
 }
 
 .label-form {
@@ -111,8 +111,8 @@ const  validateDate = (value: string) => {
 
 
 .loader {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border: 5px solid #FFF;
     border-bottom-color: transparent;
     border-radius: 50%;

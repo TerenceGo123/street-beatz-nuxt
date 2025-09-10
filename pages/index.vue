@@ -14,7 +14,7 @@
         <li><a href="#about">О НАС</a></li>
         <li><a href="#events">МЕРОПРИЯТИЯ</a></li>
         <li class="max-sm:order-first"><img src="/favicon.png" alt="street beatz logo" class=" mx-auto max-sm:hidden"></li>
-        <li><a href="#why we">ПОЧЕМУ МЫ?</a></li>
+        <li><NuxtLink to="/#why we">ПОЧЕМУ МЫ</NuxtLink></li>
         <li><a href="#team">КОМАНДА</a></li>
       </ul>
     </nav> 
@@ -69,15 +69,46 @@
           </section>
           <section class="why-we-section" id="why we">
             <MyTitle>ПОЧЕМУ МЫ?</MyTitle>
-            <div>
-              <div class="flex justify-between items-center">
-                <ul class="text-white text-2xl max-xl:text-xl list-disc list-inside w-1/2 max-lg:w-full ">
-                  <li class="list__item">Самый <span class="text-brand-orange">зажигательный коллектив</span> Краснодарского края! </li>
-                  <li class="list__item">Мы сделаем Ваше мероприятие шумным, <span class="text-brand-orange">ярким и фееричным!</span></li>
-                  <li class="list__item"><span class="text-brand-orange">Проффесиональный</span> подход к делу!</li>
+            <div  class="why flex justify-between max-sm:flex-col">
+              <div class="why-list-container max-sm:mb-5">
+                <ul class="why-list ">
+                  <li>
+                    <div>
+                      <p >Самый зажигательный коллектив Краснодарского края!</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <p>Мы сделаем Ваше мероприятие шумным, ярким и фееричным!</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <p>Проффесиональный подход к делу!</p>
+                    </div>
+                  </li>
                 </ul>
-                <img src="/assets/images/t-short.png" alt="" class=" 2xl:w-2/4 xl:w-2/5 max-lg:hidden">  
               </div>
+              <div class="why-list-container">
+                <ul class="why-list ">
+                  <li>
+                    <div >
+                      <p>Самый зажигательный коллектив Краснодарского края!</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div >
+                      <p>Мы сделаем Ваше мероприятие шумным, ярким и фееричным!</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <p>Проффесиональный подход к делу!</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
             </div>
           </section>
           <section class="team-section mb-12" id="team">
@@ -121,7 +152,7 @@
             <div class="contacts flex flex-col items-center">
               <ul class="text-white text-xl contacts__list mb-2">
                 <li>КОНТАКТЫ</li>
-                <li><a href="tel:+79604837407">8 960 483 74 07</a></li>
+                <li><a href="tel:+79999999999">8 999 999 99 99</a></li>
                 <li><a href="">mail@mail.com</a></li>
               </ul>
               <div class="contacts__socials flex justify-start w-full">
@@ -136,6 +167,11 @@
 </template>
 <script lang="ts" setup>
 import { useFormStore } from '~/stores/formStore'
+
+useSeoMeta({
+  title: 'STREET BEATZ',
+  description: 'This is my amazing site, let me tell you all about it.',
+})
 
 const formStore = useFormStore()
 
@@ -182,13 +218,10 @@ const toggleMenu = () => {
 }
 
 
-
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
-
-
 
 
 * {
@@ -212,6 +245,37 @@ const toggleMenu = () => {
 }
 
 
+.why-list {
+  @apply text-brand-darkGray text-3xl max-lg:text-2xl 
+}
+
+.why-list {
+  
+  &-container {
+    @apply w-2/5 mx-auto max-sm:w-full
+  }
+
+
+  li {
+
+    div {
+      @apply bg-brand-yellow px-6 py-2 rounded-lg max-sm:px-2 max-sm:py-1
+    }
+
+    p {
+      font-family: "Play", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    
+  }
+
+  li:not(:last-child) {
+      @apply mb-5
+    }
+  
+}
  
 .contacts__list li {
   @apply mb-2
