@@ -11,11 +11,11 @@
         </div>
       </button>
       <ul class="nav-ul flex justify-around items-center bg-black text-white py-2 text-2xl nav-menu max-sm:flex-col max-sm:items-start max-sm:pl-2 max-sm:text-xl max-sm:opacity-0 max-sm:w-full max-sm:absolute top-[50px] transform transition-all duration-300" >
-        <li><a href="#about">О НАС</a></li>
-        <li><a href="#events">МЕРОПРИЯТИЯ</a></li>
+        <li><NuxtLink to="/#about">О НАС</NuxtLink></li>
+        <li><NuxtLink to="/#events">МЕРОПРИЯТИЯ</NuxtLink></li>
         <li class="max-sm:order-first"><img src="/favicon.png" alt="street beatz logo" class=" mx-auto max-sm:hidden"></li>
         <li><NuxtLink to="/#why we">ПОЧЕМУ МЫ</NuxtLink></li>
-        <li><a href="#team">КОМАНДА</a></li>
+        <li><NuxtLink to="/#team">КОМАНДА</NuxtLink></li>
       </ul>
     </nav> 
     <header class="w-full h-screen max-sm:h-[80vh] bg-[image:linear-gradient(to_top,rgba(0,0,0,1.0),transparent_100%),url('/main-image.jpg')] bg-cover  bg-top">
@@ -30,31 +30,31 @@
             <MyTitle>О НАС</MyTitle>
             <div class=" flex justify-between  max-sm:flex-col max-sm:items-center " >
                 <div class="w-1/3 text-center max-xl:w-2/4 max-lg:text-start max-sm:w-full max-sm:mb-5 ">
-                    <NuxtImg class=" w-3/4 mb-16 max-lg:w-1/4  max-lg:mb-4 lg:m-auto max-sm:mb-2 max-sm:m-auto" src="/logo.png" alt="Логотип Шоу Барабанщиков Street Beatz"/>
+                    <img class=" w-3/4 mb-16 max-lg:w-1/4  max-lg:mb-4 lg:m-auto max-sm:mb-2 max-sm:m-auto" src="../assets/images/logo.png" alt="Логотип Шоу Барабанщиков Street Beatz"/>
                     <h4 class=" text-brand-orange text-2xl max-lg:text-xl max-sm:text-left max-sm:w-full " >Шоу Барабанщиков Street Beatz</h4><br>
                     <p class="text-2xl max-lg:text-xl max-sm:text-left text-white max-sm:w-full" >Наше шоу барабанщиков – это уникальное сочетание динамичных перформансов, невероятной музыкальной энергии и визуального искусства.</p>
                 </div> 
                 <div class="w-1/2 max-sm:w-full">
                   <div class="relative pb-[80%] max-sm:pb-0"> <!-- Подберите нужный процент под вашу композицию -->
                     <!-- Фото 1 -->
-                    <NuxtImg 
-                      src="/photo1.jpg" 
+                    <img 
+                      src="../assets/images/photo1.jpg" 
                       class="w-[40%] absolute top-[0%]  left-[25%] rounded-lg max-lg:left-[45%] max-sm:w-4/5 max-sm:hidden"
                     /> 
                     <!-- Фото 2 -->
-                    <NuxtImg 
-                      src="/photo2.jpg" 
+                    <img 
+                      src="../assets/images/photo2.jpg" 
                       class="w-[50%] absolute top-[47%] -left-[5%] rounded-lg max-lg:left-[8%] max-sm:static max-sm:m-auto max-sm:w-full max-sm:mb-2"
                     />
                     
                     <!-- Фото 3 -->
-                    <NuxtImg 
-                      src="/photo3.jpeg" 
+                    <img 
+                      src="../assets/images/photo3.jpeg" 
                       class="w-[50%] absolute top-[52%] left-[50%] rounded-lg max-lg:left-[63%] max-sm:static max-sm:m-auto max-sm:w-full max-sm:mb-2"
                     />
 
-                    <NuxtImg 
-                      src="/photo4.jpg" 
+                    <img 
+                      src="../assets/images/photo4.jpg" 
                       class="w-[50%] absolute top-[52%] left-[50%] rounded-lg sm:hidden max-sm:static max-sm:m-auto max-sm:w-full"
                     />
                   </div>
