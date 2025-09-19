@@ -11,17 +11,17 @@
         </div>
       </button>
       <ul class="nav-ul flex justify-around items-center bg-black text-white py-2 text-2xl nav-menu max-sm:flex-col max-sm:items-start max-sm:pl-2 max-sm:text-xl max-sm:opacity-0 max-sm:w-full max-sm:absolute top-[50px] transform transition-all duration-300" >
-        <li><NuxtLink to="/#about">О НАС</NuxtLink></li>
-        <li><NuxtLink to="/#events">МЕРОПРИЯТИЯ</NuxtLink></li>
-        <li class="max-sm:order-first"><img src="/favicon.png" alt="street beatz logo" class=" mx-auto max-sm:hidden"></li>
-        <li><NuxtLink to="/#why we">ПОЧЕМУ МЫ</NuxtLink></li>
-        <li><NuxtLink to="/#team">КОМАНДА</NuxtLink></li>
+        <li><a @click="slideTo('about')">О НАС</a></li>
+        <li><a @click="slideTo('event')">МЕРОПРИЯТИЯ</a></li>
+        <li class="max-sm:order-first"><img src="/favicon.ico" alt="street beatz logo" class=" mx-auto max-sm:hidden"></li>
+        <li><a @click="slideTo('why we')">ПОЧЕМУ МЫ</a></li>
+        <li><a @click="slideTo('video')">ВИДЕО</a></li>
       </ul>
     </nav> 
     <header class="w-full h-screen max-sm:h-[80vh] bg-[image:linear-gradient(to_top,rgba(0,0,0,1.0),transparent_100%),url('/main-image.jpg')] bg-cover  bg-top">
         <div class="flex flex-col justify-end items-center h-full pb-28 max-sm:p-12">
           <h1 class=" text-white text-8xl max-lg:text-5xl max-sm:text-4xl play-bold text-center mb-6" >ШОУ<br>БАРАБАНЩИКОВ</h1>
-          <a href="#form"><MyButton :type="'button'">ОСТАВИТЬ ЗАЯВКУ</MyButton></a>
+          <a @click="slideTo('form')"><MyButton :type="'button'">ОСТАВИТЬ ЗАЯВКУ</MyButton></a>
         </div>
     </header>
     <main class=" bg-black px-14 max-lg:px-8 max-sm:px-4" >
@@ -34,30 +34,26 @@
                     <h4 class=" text-brand-orange text-2xl max-lg:text-xl max-sm:text-left max-sm:w-full " >Шоу Барабанщиков Street Beatz</h4><br>
                     <p class="text-2xl max-lg:text-xl max-sm:text-left text-white max-sm:w-full" >Наше шоу барабанщиков – это уникальное сочетание динамичных перформансов, невероятной музыкальной энергии и визуального искусства.</p>
                 </div> 
-                <div class="w-1/2 max-sm:w-full">
-                  <div class="relative pb-[80%] max-sm:pb-0"> <!-- Подберите нужный процент под вашу композицию -->
-                    <!-- Фото 1 -->
+                <div class="w-1/2 max-sm:hidden">
+                  <div class="relative pb-[80%] max-sm:pb-0"> 
                     <img 
-                      src="../assets/images/photo1.jpg" 
+                      src="/images/photos/photo1.jpg" 
                       class="w-[40%] absolute top-[0%]  left-[25%] rounded-lg max-lg:left-[45%] max-sm:w-4/5 max-sm:hidden"
                     /> 
-                    <!-- Фото 2 -->
                     <img 
-                      src="../assets/images/photo2.jpg" 
+                      src="/images/photos/photo2.jpg" 
                       class="w-[50%] absolute top-[47%] -left-[5%] rounded-lg max-lg:left-[8%] max-sm:static max-sm:m-auto max-sm:w-full max-sm:mb-2"
                     />
-                    
-                    <!-- Фото 3 -->
                     <img 
-                      src="../assets/images/photo3.jpeg" 
+                      src="/images/photos/photo3.jpeg" 
                       class="w-[50%] absolute top-[52%] left-[50%] rounded-lg max-lg:left-[63%] max-sm:static max-sm:m-auto max-sm:w-full max-sm:mb-2"
                     />
-
-                    <img 
-                      src="../assets/images/photo4.jpg" 
-                      class="w-[50%] absolute top-[52%] left-[50%] rounded-lg sm:hidden max-sm:static max-sm:m-auto max-sm:w-full"
-                    />
                   </div>
+                </div>
+                <div class="hidden relative h-96 w-full max-sm:block max-sm:h-64 max-phone:h-48">
+                    <div v-for="(slide, index) in slides" class="inset-0 w-full mx-auto absolute">
+                      <img :src="slide.src" :alt="slide.alt" class="carousel-item rounded-xl" :class="currentSlide == index ? 'opacity-100' : 'opacity-0'">
+                    </div>
                 </div>
             </div>  
           </section>
@@ -108,21 +104,17 @@
                   </li>
                 </ul>
               </div>
-
             </div>
           </section>
-          <section class="team-section mb-12" id="team">
-            <MyTitle>КОМАНДА</MyTitle> 
-            <TeamMember :name="teamLeader.name" :img="teamLeader.img" class="mb-12" />
-            <div class="grid grid-cols-3 max-sm:grid-cols-2 gap-y-12 place-content-center"> 
-              <TeamMember v-for="mebmer in teamNames" :name="mebmer.name" :img="mebmer.img" />
-            </div>
+          <section class="team-section mb-12" id="video">
+            <MyTitle>ВИДЕО</MyTitle> 
+            <iframe src="https://vk.com/video_ext.php?oid=-149015027&id=456239031&hd=2&autoplay=1" class="mx-auto w-[853px] h-[480px] max-md:w-[426px] max-md:h-[240px] max-phone:w-[280px] max-phone:h-[158px]" style="background-color: #000" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
           </section>
           <section class="form-section pt-12 mb-5" id="form">
-            <div class="flex justify-between items-center">
-              <div class="w-2/4 flex justify-center flex-col max-lg:w-full">
+            <div>
+              <div class="w-3/4 flex justify-center flex-col mx-auto max-lg:w-full">
                 <div class="flex justify-center">
-                  <img src="/favicon.png" alt="street beatz logo">
+                  <img src="/favicon.ico" alt="street beatz logo">
                 </div>
                 <MyForm v-if="!formStore.formIsSubmit"/>
                 <div v-if="formStore.formIsSubmit" class="flex flex-col items-center justify-center p-8 text-center h-[534.8px]">
@@ -142,13 +134,10 @@
                   </MyButton>
               </div>
               </div>
-              <div class="w-2/5 max-lg:hidden">
-                <img src="/assets/images/peopleImage.jpg" alt="" class=" rounded-3xl">
-              </div>
             </div>
           </section>
           <footer class="h-56 flex justify-center max-sm:justify-around items-center">
-            <img src="/favicon.png" alt="street beatz logo" class="sm:mr-14" >
+            <img src="/favicon.ico" alt="street beatz logo" class="sm:mr-14" >
             <div class="contacts flex flex-col items-center">
               <ul class="text-white text-xl contacts__list mb-2">
                 <li>КОНТАКТЫ</li>
@@ -167,48 +156,63 @@
 </template>
 <script lang="ts" setup>
 import { useFormStore } from '~/stores/formStore'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 useSeoMeta({
   title: 'STREET BEATZ',
-  description: 'This is my amazing site, let me tell you all about it.',
+  description: 'Наше шоу барабанщиков – это уникальное сочетание динамичных перформансов, невероятной музыкальной энергии и визуального искусства',
 })
 
+
 const formStore = useFormStore()
-
-const teamLeader = {name: "Семён", img: '/team/Semen.jpg'} 
-const teamNames = [  
-  { name: "Лера", img: "/main-image.jpg" },
-  { name: "Женя", img: "/team/Evgeniy.jpg" },
-  { name: "Саня", img: "/team/Sanya.jpg" },
-  { name: "Лиза", img: "/main-image.jpg" },
-  { name: "Даша", img: "/main-image.jpg" },
-  { name: "Лера", img: "/main-image.jpg" }
-] 
-
 
 const cards = [
   {
     id: 1,
     title: 'СВАДЬБА',
-    img: '/first-card.png'
+    img: '/images/cards/first-card.png'
   },
     {
     id: 2,
     title: 'КОРПОРАТИВ',
-    img: '/second-card.png'
+    img: '/images/cards/second-card.png'
   },
   {
     id: 3,
     title: 'ФЕСТИВАЛЬ',
-    img: '/third-card.png'
+    img: '/images/cards/third-card.png'
   },
     {
     id: 4,
     title: 'ДЕНЬ РОЖДЕНИЯ',
-    img: '/fourth-card.jpeg'
+    img: '/images/cards/fourth-card.jpeg'
   }
 ] 
 
+const slides = ref([
+  { src: '/images/photos/photo2.jpg', alt: 'Photo 2' },
+  { src: '/images/photos/photo3.jpeg', alt: 'Photo 3' },
+  { src: '/images/photos/photo4.jpg', alt: 'Photo 4' }
+])
+
+const currentSlide = ref(0)
+
+
+const nextSlide = () => {
+  currentSlide.value = (currentSlide.value + 1) % slides.value.length
+}
+
+let intervalId: any = null
+
+onMounted(() => {
+  intervalId = setInterval(nextSlide, 3000)
+})
+
+onUnmounted(() => {
+  if (intervalId) {
+    clearInterval(intervalId)
+  }
+})
 
 const toggleMenu = () => {
   const menu = document.querySelector(".nav-ul")
@@ -217,11 +221,21 @@ const toggleMenu = () => {
   }
 }
 
+const slideTo = (id:string) => {
+  const element = document.getElementById(id)
+  if(element != null) {
+    const yPosition: number = element.offsetTop
+    window.scrollTo({top: yPosition, behavior: 'smooth'})
+  }
+}
+
 
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+
 
 
 * {
@@ -237,7 +251,7 @@ const toggleMenu = () => {
 }
 
 .nav-menu li :not(img) {
-  @apply  hover:border-b-4  hover:border-brand-orange transform transition-all box-border 
+  @apply  hover:border-b-4  hover:border-brand-orange transform transition-all box-border cursor-pointer 
 }
 
 .list__item {
@@ -276,12 +290,14 @@ const toggleMenu = () => {
     }
   
 }
+
+.carousel-item {
+  transition: opacity 0.7s ease-in-out;
+}
  
 .contacts__list li {
   @apply mb-2
 }
-
-
 
 .circle {
   animation: circle-anim 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;

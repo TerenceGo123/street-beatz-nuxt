@@ -3,6 +3,7 @@ export default {
   content: [],
   theme: {
     screens: {
+      'phone': '425px',
       'sm': '640px',
       'md': '768px',
       'lg': '1024px', // Должен быть строго больше 1024px
