@@ -4,7 +4,7 @@
         <Form @submit="formStore.submitForm">
             <div class="mb-4">
                 <label for="name" class="label-form" >Имя</label>
-                <Field id="name" name="name" type="text" autocomplete="username" :rules="validateName" class="input-form" placeholder="Введите имя..."/>
+                <Field id="name" name="name" type="text" autocomplete="username" :rules="validateName" class="input-form" placeholder="Имя..."/>
                 <ErrorMessage name="name" class="error-message" />
             </div>
             <div class="mb-4">
@@ -13,20 +13,20 @@
                 <ErrorMessage name="phone" class="error-message" />
             </div>
             <div class="flex justify-between mb-4" >
-                <div class="w-2/5">
+                <div class="w-[45%]">
                     <label for="date" class="label-form" >Дата</label>
                     <Field id="date" name="date" type="date" autocomplete="date" :rules="validateDate" class="input-form"/>
                     <ErrorMessage name="date" class="error-message" />
                 </div>
-                <div class="w-2/5">
+                <div class="w-[45%]">
                     <label for="city" class="label-form" >Город</label>
-                    <Field id="city" name="city" type="city" autocomplete="city"  :rules="validateCity" class="input-form" placeholder="Введите город..."/>
+                    <Field id="city" name="city" type="city" autocomplete="city"  :rules="validateCity" class="input-form" placeholder="Город..."/>
                     <ErrorMessage name="city" class="error-message" />
                 </div>  
             </div>
             <div class="mb-8">
                 <label for="comment" class="label-form" >Комментарий (необязательно)</label>
-                <Field id="comment" name="comment" type="comment" autocomplete="city" class="input-form" placeholder="Введите комментарий"/>
+                <Field id="comment" name="comment" type="comment" autocomplete="city" class="input-form" placeholder="Комментарий..."/>
             </div>
             <div>
                 <MyButton :type="'submit'" :disabled="formStore.formIsSubmit">
@@ -83,7 +83,7 @@ const  validateDate = (value: string) => {
     const today = new Date()
     today.setHours(0,0,0,0)
     if(selectDate < today) {
-        return 'Выберите правильную дату'
+        return 'Некорректная дата'
     }
 
     return true 
@@ -102,7 +102,7 @@ const  validateDate = (value: string) => {
 }
 
 .input-form {
-  @apply w-full p-4 rounded-xl text-xl  border-black border-2 outline focus:border-brand-orange mb-1 
+  @apply w-full p-4 rounded-xl text-xl  border-black border-2 outline focus:border-brand-orange mb-1 max-phone:text-[1rem]
 }
 
 .label-form {
@@ -119,6 +119,7 @@ const  validateDate = (value: string) => {
     display: inline-block;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
+    @apply max-sm:w-[28px] max-sm:h-[28px] border-2
     }
 
     @keyframes rotation {

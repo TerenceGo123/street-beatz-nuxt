@@ -94,13 +94,17 @@
 
           <section class="video-section mb-12" id="video">
             <MyTitle>ВИДЕО</MyTitle>
-            <div class="flex justify-evenly h-[720px]">
-              <div class="arrow-container group" @click="changeVideo('prev')">
-                <div class="arrow arrow-left"></div>
-              </div>
-              <iframe :src="videoLinks[currentVideo]" class="video-frame transition-all w-[1280px] h-[720px]  max-xl:w-[800px] max-xl:h-[450px] max-md:w-full max-md:h-[390px] max-phone:w-[280px] max-phone:h-[158px] shadow-brand-orange shadow-2xl" style="background-color: #000" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
-              <div class="arrow-container group" @click="changeVideo('next')">
-                <div class="arrow arrow-right "></div>
+            <div class="flex flex-col items-center">
+
+              <iframe :src="videoLinks[currentVideo]" class="video-frame transition-all w-[1280px] h-[720px]  max-xl:w-[800px] max-xl:h-[450px] max-md:w-full max-md:h-[390px] max-phone:h-[214px] shadow-brand-orange shadow-2xl mb-14" style="background-color: #000" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+
+              <div class="flex justify-between w-[1280px] max-xl:w-[800px] max-md:w-full">
+                <div class="arrow-container-sm group" @click="changeVideo('prev')">
+                  <div class="arrow arrow-left"></div>
+                </div>
+                <div class="arrow-container-sm group" @click="changeVideo('next')">
+                  <div class="arrow arrow-right "></div>
+                </div>
               </div>
             </div>
           </section>
@@ -150,7 +154,7 @@
               </div>
             </div>
           </footer>
-      </div
+        </div>
     </main>
   </div>  
 </template>
@@ -226,7 +230,7 @@ const changeVideo = (direction: string) => {
 
   setTimeout(() => {
     frame?.classList.remove('opacity-0')
-  }, 1000)
+  }, 2000)
 }
 
 let intervalId: any = null
@@ -264,21 +268,8 @@ const slideTo = (id:string) => {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
-.arrow-container {
-  @apply h-full w-20 bg-gray-500/5 flex justify-center items-center  hover:bg-gray-500/65 transition-all duration-300
-}
 
-.arrow {
-  @apply w-[30px] h-[30px] border-2 border-gray-700 border-t-0 border-l-0 group-hover:border-white
-}
 
-.arrow-right {
-  transform: rotate(-45deg);
-}
-
-.arrow-left {
-  transform: rotate(135deg);
-}
 
 
 
@@ -304,13 +295,15 @@ const slideTo = (id:string) => {
 
 
 .why-list {
-  @apply text-brand-darkGray text-3xl max-lg:text-2xl 
+  @apply text-brand-darkGray text-3xl max-lg:text-2xl  max-sm:text-xl
+
 }
+
 
 .why-list {
   
   &-container {
-    @apply  w-3/5 mx-auto max-2xl:w-4/5
+    @apply  w-3/5 mx-auto max-2xl:w-4/5 max-phone:w-full
   }
 
 
@@ -333,6 +326,23 @@ const slideTo = (id:string) => {
       @apply mb-5
     }
   
+}
+
+
+.arrow-container-sm {
+  @apply h-16 w-2/5 bg-gray-500/5 flex justify-center items-center hover:bg-gray-500/65 transition-all duration-300 max-lg:h-10 max-lg:w-1/4 cursor-pointer
+}
+
+.arrow {
+  @apply w-[30px] h-[30px] border-2 border-gray-700 border-t-0 border-l-0 group-hover:border-white transition-all duration-300 max-lg:w-[20px] max-lg:h-[20px] max-sm:w-[15px] max-sm:h-[15px]
+}
+
+.arrow-right {
+  transform: rotate(-45deg);
+}
+
+.arrow-left {
+  transform: rotate(135deg);
 }
 
 .carousel-item {
