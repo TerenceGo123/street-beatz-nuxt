@@ -6,7 +6,7 @@ export const useFormStore = defineStore('form', () => {
     const loader = ref(false)
     const formIsSubmit = ref(false)
     const formInfo = ref({
-        access_key: "61559fd2-3e2e-4b3b-aef3-0c2cfd3267d8",
+        access_key: "",
         name: "",
         number: "",
         date: "",

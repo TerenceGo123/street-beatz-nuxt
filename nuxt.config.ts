@@ -2,8 +2,15 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
-  modules: ['@pinia/nuxt', '@nuxtjs/tailwindcss', '@nuxt/image', '@vee-validate/nuxt'],
-  routeRules: {
-    '/': { prerender: true },
-  }
+  modules: ['@pinia/nuxt',
+      '@nuxtjs/tailwindcss',
+      '@nuxt/image',
+      '@vee-validate/nuxt',
+      ['@nuxtjs/google-fonts', {
+      families: {
+          Play: {
+              wght: [400, 700],
+          },
+      }
+  }],]
 })

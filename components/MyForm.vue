@@ -4,7 +4,7 @@
         <Form @submit="formStore.submitForm">
             <div class="mb-4">
                 <label for="name" class="label-form" >Имя</label>
-                <Field id="name" name="name" type="text" autocomplete="username" :rules="validateName" class="input-form" placeholder="Имя..."/>
+                <Field id="name" name="name" type="text" autocomplete="username" :rules="validateName"  class="input-form" placeholder="Имя..."/>
                 <ErrorMessage name="name" class="error-message" />
             </div>
             <div class="mb-4">
@@ -30,7 +30,7 @@
             </div>
             <div>
                 <MyButton :type="'submit'" :disabled="formStore.formIsSubmit">
-                    <span v-if="!formStore.loader" class="play-bold" >ОТПРАВИТЬ</span>
+                    <span v-if="!formStore.loader" class="font-bold" >ОТПРАВИТЬ</span>
                     <span v-else  class="loader"></span>
                 </MyButton>
             </div>
@@ -43,49 +43,43 @@
 import { useFormStore } from '~/stores/formStore'
 const formStore = useFormStore()
 
-const validateName = (value: string) => {
+type Validator = (value: string) => string | boolean;
+
+const validateName: Validator = (value: string) => {
   if (!value) {
     return 'Имя обязательно для заполнения'
   }
-  
   return true
 }
 
-
-const validatePhone = (value: string) => {
+const validatePhone: Validator = (value: string) => {
   if (!value) {
     return 'Номер телефона обязателен для заполнения'
   }
-  
-  // Простая проверка формата номера телефона
   const phoneRegex = /^(\+7|8)[\s-]?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/
   if (!phoneRegex.test(value)) {
     return 'Введите корректный номер телефона'
   }
-  
   return true
 }
 
-const validateCity = (value: string) => {
+const validateCity: Validator = (value: string) => {
   if (!value) {
     return 'Обязательно'
   }
-  
   return true
 }
 
-const  validateDate = (value: string) => {
+const validateDate: Validator = (value: string) =>  {
     if(!value) {
         return 'Обязательно'
     }
-
     const selectDate = new Date(value)
     const today = new Date()
     today.setHours(0,0,0,0)
     if(selectDate < today) {
         return 'Некорректная дата'
     }
-
     return true 
 }
 
@@ -102,33 +96,15 @@ const  validateDate = (value: string) => {
 }
 
 .input-form {
-  @apply w-full p-4 rounded-xl text-xl  border-black border-2 outline focus:border-brand-orange mb-1 max-phone:text-[1rem]
+  @apply w-full p-4 rounded-2xl max-sm:rounded-xl text-xl border-black border-2 outline focus:border-brand-orange mb-1 max-phone:text-[1rem] transition-all
 }
 
 .label-form {
- @apply text-white ml-2
+  @apply text-white ml-2
 }
 
 
 .loader {
-    width: 40px;
-    height: 40px;
-    border: 5px solid #FFF;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    @apply max-sm:w-[28px] max-sm:h-[28px] border-2
-    }
-
-    @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-    } 
-
+  @apply border-white border-b-transparent border-solid border-[5px] rounded-full w-10 h-10 max-sm:w-7 max-sm:h-7 max-sm:border-2 animate-spin
+}
 </style>
